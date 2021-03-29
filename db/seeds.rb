@@ -10,3 +10,9 @@ User.create!(first_name: 'alex', email: 'web@mail.com')
 User.create!(first_name: 'jon', email: 'jon@mail.com')
 User.create!(first_name: 'jane', email: 'jane@mail.com')
 User.create!(first_name: 'jose', email: 'jose@mail.com')
+
+quiz = Quiz.create!(label: 'Awesome Quiz')
+
+Question.create!(label: 'Do you like chocolate?', correct_answer: true, quiz: quiz)
+Question.create!(label: 'Do you like bananas?', correct_answer: true, quiz: quiz)
+Question.create!(label: 'Do you like sardines?', correct_answer: false, quiz: quiz)

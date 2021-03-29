@@ -15,6 +15,15 @@ RSpec.describe "Dashboards", type: :request do
       end
     end
 
+    describe "GET /take_quiz" do
+      let(:quiz) { create(:quiz) }
+
+      it "returns http success" do
+        get "/dashboard/take_quiz/#{quiz.id}"
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     describe "GET /settings" do
       it "returns http success" do
         get "/dashboard/settings"
