@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Quiz, type: :model do
+RSpec.describe Question, type: :model do
   describe 'associations' do
-    it { have_many :questions }
+    it { belong_to :quiz }
   end
 
   describe 'validations' do
     it { should validate_presence_of(:label) }
+    it { should validate_presence_of(:correct_answer) }
   end
 end
