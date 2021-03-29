@@ -3,4 +3,5 @@ class Question < ApplicationRecord
   validates :correct_answer, presence: true
 
   belongs_to :quiz
+  has_many :answers
 end
