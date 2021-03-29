@@ -16,6 +16,7 @@ RSpec.describe "/users", type: :request do
   
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
+  let(:user) { create(:user) }
   let(:valid_attributes) {
     {
       first_name: 'alex',
@@ -29,6 +30,10 @@ RSpec.describe "/users", type: :request do
       email: nil
     }
   }
+
+  before do
+    get "/sessions/login/#{user.id}"
+  end
 
   describe "GET /index" do
     it "renders a successful response" do

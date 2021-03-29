@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>Ubf</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,35 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column h-100">
+  <main class="flex-shrink-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <%= link_to 'UBF', root_url, class: 'navbar-brand' %>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item g-btn">
+              <% if logged_in? %>
+                Welcome <%= current_user.email %> <%= link_to 'Sign out', sessions_logout_url, data: { method: :delete } %>
+              <% else %>
+                <%= link_to 'Login', root_url %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <%= yield %>
+    </div>
+  </main>
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <span class="text-muted">Copyright 2021 | UBF.</span>
+    </div>
+  </footer>
   </body>
 </html>

@@ -35,6 +35,10 @@ RSpec.describe "/answers", type: :request do
     }
   }
 
+  before do
+    get "/sessions/login/#{user.id}"
+  end
+
   describe "GET /index" do
     it "renders a successful response" do
       Answer.create! valid_attributes

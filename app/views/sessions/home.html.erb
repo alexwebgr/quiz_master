@@ -1,0 +1,14 @@
+<h3>Login</h3>
+<p>This page simulates a login page. Select any user to login with.</p>
+<div class="row">
+  <div class="col-6 offset-3">
+    <ul class="list-group">
+      <% @users.each do |user| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= user.first_name %> | <%= user.email %>
+          <%= link_to 'Login', sessions_login_url(user_id: user.id), class: 'btn btn-primary' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

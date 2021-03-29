@@ -16,6 +16,7 @@ RSpec.describe "/quizzes", type: :request do
   
   # Quiz. As you add validations to Quiz, be sure to
   # adjust the attributes here as well.
+  let(:user) { create(:user) }
   let(:valid_attributes) {
     {
       label: 'Quiz 1'
@@ -27,6 +28,10 @@ RSpec.describe "/quizzes", type: :request do
       label: nil
     }
   }
+
+  before do
+    get "/sessions/login/#{user.id}"
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
