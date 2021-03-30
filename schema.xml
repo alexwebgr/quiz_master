@@ -90,8 +90,8 @@
     <row name="supplied_answer" null="1" autoincrement="0">
       <datatype>VARCHAR</datatype>
       <default>NULL</default></row>
-    <row name="new field" null="1" autoincrement="0">
-      <datatype>INTEGER</datatype>
+    <row name="is_correct" null="1" autoincrement="0">
+      <datatype>TINYINT</datatype>
       <default>NULL</default></row>
     <row name="id_questions" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
@@ -100,6 +100,28 @@
     <row name="id_users" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
       <default>NULL</default><relation table="users" row="id" />
+    </row>
+    <key type="PRIMARY" name="">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="275" y="318" name="submissions">
+    <row name="id" null="1" autoincrement="1">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default></row>
+    <row name="answers" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
+      <default>NULL</default></row>
+    <row name="score" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default></row>
+    <row name="id_users" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default><relation table="users" row="id" />
+    </row>
+    <row name="id_quizes" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default><relation table="quizes" row="id" />
     </row>
     <key type="PRIMARY" name="">
       <part>id</part>

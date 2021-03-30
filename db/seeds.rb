@@ -13,6 +13,6 @@ User.create!(first_name: 'jose', email: 'jose@mail.com')
 
 quiz = Quiz.create!(label: 'Awesome Quiz')
 
-Question.create!(label: 'Do you like chocolate?', correct_answer: true, quiz: quiz)
-Question.create!(label: 'Do you like bananas?', correct_answer: true, quiz: quiz)
-Question.create!(label: 'Do you like sardines?', correct_answer: false, quiz: quiz)
+Question.create!(label: 'Do you like chocolate?', correct_answer: 'true', quiz: quiz)
+Question.create!(label: 'Do you like bananas?', correct_answer: 'true', quiz: quiz)
+Question.create!(label: 'Do you like sardines?', correct_answer: 'false', quiz: quiz)

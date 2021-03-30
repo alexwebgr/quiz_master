@@ -7,7 +7,14 @@ class Answer < ApplicationRecord
   def self.submit_answers(params, user)
     params.each do |param|
       next unless param[0].match(/question_/)
-      Answer.create!(supplied_answer: param[1], user: user, question_id: param[0].split('_')[1])
+      q = Question.find(param[0].to_s.split('_')[1])
+
+      Answer.create!({
+                       supplied_answer: param[1],
+                       is_correct: q.correct_answer == param[1],
+                       question: q,
+                       user: user
+                     })
     end
   end
 end
