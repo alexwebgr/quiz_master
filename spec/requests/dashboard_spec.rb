@@ -24,6 +24,33 @@ RSpec.describe "Dashboards", type: :request do
       end
     end
 
+    describe "POST /submit_answers" do
+      let(:questions) { create_list(:question, 3) }
+      let(:valid_attributes) {
+        {
+          "authenticity_token": "U4jxET0nQ25H1_YMkTO94oP7JRNUUGRZE3X-ktKxvWaJPVoZWFMyyshWFCvsCTQIXswkEoaV6yHV0O5KXEbxbQ",
+          "question_#{questions[0].id}": "true",
+          "question_#{questions[1].id}": "true",
+          "question_#{questions[2].id}": "false",
+          "commit": "Submit",
+          "controller": "dashboard",
+          "action": "submit_answers"
+        }
+      }
+      it "creates answers" do
+        expect {
+          post dashboard_submit_answers_url, params: valid_attributes
+        }.to change(Answer, :count).by(3)
+      end
+    end
+
+    describe "GET /results" do
+      it "returns http success" do
+        get "/dashboard/results"
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     describe "GET /settings" do
       it "returns http success" do
         get "/dashboard/settings"

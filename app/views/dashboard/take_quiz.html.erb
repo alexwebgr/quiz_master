@@ -2,18 +2,23 @@
 <p>Please answer all questions and submit when you are done</p>
 <div class="row">
   <div class="col-6 offset-3">
-    <ul class="list-group">
-      <% @quiz.questions.each do |question| %>
-        <li class="list-group-item">
-          <%= question.label %>
-          <div>
-            <input type="radio" class="btn-check" id="btn-check-<%= question.id %>" name="quiz-<%= question.id %>" autocomplete="off" value="true">
-            <label class="btn btn-outline-primary" for="btn-check-<%= question.id %>">true</label>
-            <input type="radio" class="btn-check" id="btn-check-f-<%= question.id %>" name="quiz-<%= question.id %>" autocomplete="off" value="false">
-            <label class="btn btn-outline-primary" for="btn-check-f-<%= question.id %>">false</label>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+    <%= form_tag dashboard_submit_answers_url do %>
+      <ul class="list-group">
+        <% @quiz.questions.each do |question| %>
+          <li class="list-group-item">
+            <%= question.label %>
+            <div>
+              <input type="radio" class="btn-check" id="btn-check-<%= question.id %>" name="question_<%= question.id %>" autocomplete="off" value="true" required>
+              <label class="btn btn-outline-primary" for="btn-check-<%= question.id %>">true</label>
+              <input type="radio" class="btn-check" id="btn-check-f-<%= question.id %>" name="question_<%= question.id %>" autocomplete="off" value="false" required>
+              <label class="btn btn-outline-primary" for="btn-check-f-<%= question.id %>">false</label>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="float-end mt-4">
+        <%= submit_tag 'Submit', class: 'btn btn-primary ' %>
+      </div>
+    <% end %>
   </div>
 </div>
