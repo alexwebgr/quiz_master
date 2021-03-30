@@ -3,6 +3,7 @@
 <div class="row">
   <div class="col-6 offset-3">
     <%= form_tag dashboard_submit_answers_url do %>
+      <%= hidden_field_tag :quiz_id, params[:quiz_id] %>
       <ul class="list-group">
         <% @quiz.questions.each do |question| %>
           <li class="list-group-item">

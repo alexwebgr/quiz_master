@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :calculate_score
 
   def current_user
     @current_user ||= User.find_by(id: session[:current_user_id])
@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !current_user.nil?
+  end
+
+  def calculate_score(answers)
+    ((answers.flatten.count(true).to_f / answers.size.to_f) * 100.0).round(2)
   end
 
   private

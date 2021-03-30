@@ -1,1 +1,20 @@
-<%= Answer.all.as_json %>
+<h3><%= @last_sub.quiz.label %></h3>
+<p>Results of the latest submission to the quiz</p>
+<div class="row">
+  <div class="col-6 offset-3">
+    <ul class="list-group">
+      <% @answers.each do |answer| %>
+        <li class="list-group-item">
+          <%= answer.question.label %>
+          <br />
+          your answer: <%= answer.supplied_answer %>
+          <br />
+          q_cor answer: <%= answer.question.correct_answer %>
+          <br />
+          is_cor answer: <%= answer.is_correct %>
+        </li>
+      <% end %>
+    </ul>
+    Total score: <%= @last_sub.score %>%
+  </div>
+</div>
