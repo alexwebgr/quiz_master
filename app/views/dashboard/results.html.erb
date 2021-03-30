@@ -2,19 +2,24 @@
 <p>Results of the latest submission to the quiz</p>
 <div class="row">
   <div class="col-6 offset-3">
+    <h4>Total score <span class="float-end"><%= @last_sub.score %>%</span></h4>
+    <div class="progress mb-5">
+      <div class="progress-bar" role="progressbar" style="width: <%= @last_sub.score %>%;" aria-valuenow="<%= @last_sub.score %>" aria-valuemin="0" aria-valuemax="100"><%= @last_sub.score %>%</div>
+    </div>
     <ul class="list-group">
       <% @answers.each do |answer| %>
-        <li class="list-group-item">
-          <%= answer.question.label %>
-          <br />
-          your answer: <%= answer.supplied_answer %>
-          <br />
-          q_cor answer: <%= answer.question.correct_answer %>
-          <br />
-          is_cor answer: <%= answer.is_correct %>
+        <li class="list-group-item <%= answer.is_correct ? 'list-group-item-success' : 'list-group-item-danger' %>">
+          <p>
+            <%= answer.question.label %>
+          </p>
+          <div>
+            You answered: <%= answer.supplied_answer %>
+          </div>
+          <div>
+            The correct answer is: <%= answer.question.correct_answer %>
+          </div>
         </li>
       <% end %>
     </ul>
-    Total score: <%= @last_sub.score %>%
   </div>
 </div>
