@@ -5,6 +5,8 @@ class Plan < ApplicationRecord
   validates :duration, presence: true
   validates :duration_unit, presence: true
 
+  has_many :subscriptions
+
   before_validation :create_handle
 
   def create_handle

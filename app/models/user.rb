@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :answers
   has_many :submissions
+  has_many :subscriptions
 
   before_validation :create_token
 

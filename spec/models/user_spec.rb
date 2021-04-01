@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { should have_many(:answers) }
     it { should have_many :submissions }
+    it { should have_many :subscriptions }
   end
 
   describe 'validations' do

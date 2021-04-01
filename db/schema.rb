@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_092120) do
+ActiveRecord::Schema.define(version: 2021_04_01_093331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,19 @@ ActiveRecord::Schema.define(version: 2021_04_01_092120) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "user_id", null: false
+    t.bigint "plan_id", null: false
+    t.bigint "subscription_status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+    t.index ["subscription_status_id"], name: "index_subscriptions_on_subscription_status_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "email"
@@ -82,4 +95,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_092120) do
   add_foreign_key "questions", "quizzes"
   add_foreign_key "submissions", "quizzes"
   add_foreign_key "submissions", "users"
+  add_foreign_key "subscriptions", "plans"
+  add_foreign_key "subscriptions", "subscription_statuses"
+  add_foreign_key "subscriptions", "users"
 end

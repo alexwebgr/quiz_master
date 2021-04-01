@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SubscriptionStatus, type: :model do
   describe 'associations' do
+    it { should have_many :subscriptions }
   end
 
   describe 'validations' do
