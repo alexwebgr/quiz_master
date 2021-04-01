@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :subscription_statuses
   resources :plans
   resources :submissions
   get 'dashboard/quizzes'

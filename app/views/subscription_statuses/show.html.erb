@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @subscription_status.label %>
+</p>
+
+<p>
+  <strong>Handle:</strong>
+  <%= @subscription_status.handle %>
+</p>
+
+<%= link_to 'Edit', edit_subscription_status_path(@subscription_status) %> |
+<%= link_to 'Back', subscription_statuses_path %>

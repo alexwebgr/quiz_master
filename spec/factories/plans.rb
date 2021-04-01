@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :plan do
     label { "Free" }
-    handle { "free" }
+    handle { nil }
     price { 0 }
     duration { 50 }
     duration_unit { "year" }

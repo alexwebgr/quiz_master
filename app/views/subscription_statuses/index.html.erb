@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subscription Statuses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Handle</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subscription_statuses.each do |subscription_status| %>
+      <tr>
+        <td><%= subscription_status.label %></td>
+        <td><%= subscription_status.handle %></td>
+        <td><%= link_to 'Show', subscription_status %></td>
+        <td><%= link_to 'Edit', edit_subscription_status_path(subscription_status) %></td>
+        <td><%= link_to 'Destroy', subscription_status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subscription Status', new_subscription_status_path %>

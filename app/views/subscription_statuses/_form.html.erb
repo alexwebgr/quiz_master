@@ -1,0 +1,27 @@
+<%= form_with(model: subscription_status) do |form| %>
+  <% if subscription_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(subscription_status.errors.count, "error") %> prohibited this subscription_status from being saved:</h2>
+
+      <ul>
+        <% subscription_status.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :label %>
+    <%= form.text_field :label %>
+  </div>
+
+  <div class="field">
+    <%= form.label :handle %>
+    <%= form.text_field :handle %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
