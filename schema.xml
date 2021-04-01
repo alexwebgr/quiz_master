@@ -37,7 +37,7 @@
       <type label="SET" length="1" sql="SET" quote=""/>
       <type label="Bit" length="0" sql="bit" quote=""/>
     </group>
-  </datatypes><table x="107" y="57" name="users">
+  </datatypes><table x="704" y="346" name="users">
   <row name="id" null="1" autoincrement="1">
     <datatype>INTEGER</datatype>
     <default>NULL</default></row>
@@ -54,7 +54,7 @@
     <part>id</part>
   </key>
 </table>
-  <table x="503" y="105" name="questions">
+  <table x="281" y="65" name="questions">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default></row>
@@ -72,7 +72,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="707" y="127" name="quizes">
+  <table x="100" y="56" name="quizes">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default></row>
@@ -83,7 +83,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="298" y="86" name="answers">
+  <table x="477" y="107" name="answers">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default></row>
@@ -105,7 +105,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="275" y="318" name="submissions">
+  <table x="299" y="419" name="submissions">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default></row>
@@ -123,6 +123,70 @@
       <datatype>INTEGER</datatype>
       <default>NULL</default><relation table="quizes" row="id" />
     </row>
+    <key type="PRIMARY" name="">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="854" y="110" name="subscriptions">
+    <row name="id" null="1" autoincrement="1">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default></row>
+    <row name="start_date" null="1" autoincrement="0">
+      <datatype>DATETIME</datatype>
+      <default>NULL</default></row>
+    <row name="end_date" null="1" autoincrement="0">
+      <datatype>DATETIME</datatype>
+      <default>NULL</default></row>
+    <row name="id_plans" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default><relation table="plans" row="id" />
+    </row>
+    <row name="id_users" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default><relation table="users" row="id" />
+    </row>
+    <row name="id_subscription_statuses" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default><relation table="subscription_statuses" row="id" />
+    </row>
+    <key type="PRIMARY" name="">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="1200" y="80" name="plans">
+    <row name="id" null="1" autoincrement="1">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default></row>
+    <row name="label" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
+      <default>NULL</default></row>
+    <row name="handle" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
+      <default>NULL</default></row>
+    <row name="price" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default></row>
+    <row name="duration" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default></row>
+    <row name="duration_unit" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
+      <default>NULL</default></row>
+    <key type="PRIMARY" name="">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="1129" y="413" name="subscription_statuses">
+    <row name="id" null="1" autoincrement="1">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default></row>
+    <row name="label" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
+      <default>NULL</default><comment>active|upcoming|expired</comment>
+    </row>
+    <row name="handle" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
+      <default>NULL</default></row>
     <key type="PRIMARY" name="">
       <part>id</part>
     </key>

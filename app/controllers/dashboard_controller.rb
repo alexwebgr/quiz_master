@@ -20,7 +20,7 @@ class DashboardController < ApplicationController
 
   def results
     @last_sub = current_user.submissions.last
-    @answers = Answer.where(id: @last_sub.answers.split(','))
+    @answers = Answer.includes(:question).where(id: @last_sub.answers.split(','))
   end
 
   def settings
