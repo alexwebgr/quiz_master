@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post 'dashboard/submit_answers'
   get 'dashboard/results'
   get 'dashboard/settings'
+  get 'dashboard/manage_subs'
+  get 'dashboard/create_sub'
+  get 'dashboard/check_subs'
 
   get 'sessions/home'
   get 'sessions/login/:user_id', controller: 'sessions', action: 'login', as: 'sessions_login'

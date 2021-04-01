@@ -66,6 +66,35 @@ RSpec.describe "Dashboards", type: :request do
         expect(response).to have_http_status(:success)
       end
     end
+
+    describe "GET /manage_subs" do
+      it "returns http success" do
+        get "/dashboard/manage_subs"
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "GET /create_sub" do
+      let(:plan) { create(:plan, label: 'Free') }
+      let!(:subscription_status) { create(:subscription_status, label: 'Active') }
+
+      it "creates a new Subscription with the free plan and active status" do
+        get "/dashboard/create_sub", params: { plan_id: plan.id }
+
+        expect(response).to redirect_to dashboard_manage_subs_url
+      end
+    end
+
+    describe "GET /check_subs" do
+      let!(:subscription_status) { create(:subscription_status, label: 'Active') }
+      let!(:plan_gm) { create(:plan, label: 'Gold monthly') }
+      let!(:plan_gy) { create(:plan, label: 'Gold yearly') }
+
+      it "returns http success" do
+        get "/dashboard/check_subs"
+        expect(response).to redirect_to dashboard_manage_subs_url
+      end
+    end
   end
 
   describe 'non-logged in user' do

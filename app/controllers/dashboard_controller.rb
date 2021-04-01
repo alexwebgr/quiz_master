@@ -25,4 +25,18 @@ class DashboardController < ApplicationController
 
   def settings
   end
+
+  def manage_subs
+    @plans = Plan.all
+  end
+
+  def create_sub
+    SubscriptionService.create_sub(params[:plan_id], current_user.id)
+    redirect_to dashboard_manage_subs_url
+  end
+
+  def check_subs
+    SubscriptionService.expire_paid_subs
+    redirect_to dashboard_manage_subs_url
+  end
 end
