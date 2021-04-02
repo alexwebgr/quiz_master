@@ -23,7 +23,7 @@
               </ul>
             </div>
             <div class="card-footer text-center">
-              <% if plan.handle == @active_sub.plan.handle %>
+              <% if plan.handle == @active_sub&.plan&.handle %>
                 <%= link_to 'Currently Active', '#', class: 'btn btn-secondary' %>
               <% else %>
                 <%= link_to 'Start', dashboard_create_sub_url(plan_id: plan.id), class: 'btn btn-primary' %>

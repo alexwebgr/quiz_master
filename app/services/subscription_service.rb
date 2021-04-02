@@ -12,6 +12,10 @@ class SubscriptionService
     new(nil, user_id).active_sub
   end
 
+  def self.has_active_paid_subs?(user_id)
+    new(nil, user_id).has_active_paid_subs?
+  end
+
   private
   attr_reader :user_id
   attr_reader :plan_id
@@ -39,10 +43,6 @@ class SubscriptionService
         .count > 0
   end
 
-  def has_active_paid_subs?
-    active_paid_subs.count > 0
-  end
-
   def all_active_paid_subs
     Subscription
       .where(subscription_status: SubscriptionStatus.active, plan: [Plan.goldmonthly.id, Plan.goldyearly.id])
@@ -65,6 +65,10 @@ class SubscriptionService
   end
 
   public
+
+  def has_active_paid_subs?
+    active_paid_subs.count > 0
+  end
 
   def active_sub
     user.subscriptions
