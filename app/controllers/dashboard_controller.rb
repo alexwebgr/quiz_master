@@ -27,6 +27,7 @@ class DashboardController < ApplicationController
   end
 
   def manage_subs
+    @active_sub = SubscriptionService.active_sub(current_user.id)
     @plans = Plan.all
   end
 

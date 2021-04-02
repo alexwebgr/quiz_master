@@ -16,14 +16,18 @@
                       <li>Free forever</li>
                     <% else %>
                       <li>Price: GBP <%= plan.price %> / month</li>
-                      <li>Duration: <%= plan.duration %> <%= plan.duration_unit %></li>
-                  <% end %>
+                      <li>Duration: <%= plan.duration %> <%= format_duration(plan.duration_unit, plan.duration) %></li>
+                    <% end %>
                   </ul>
                 </li>
               </ul>
             </div>
             <div class="card-footer text-center">
-              <%= link_to 'Start', dashboard_create_sub_url(plan_id: plan.id), class: 'btn btn-primary' %>
+              <% if plan.handle == @active_sub.plan.handle %>
+                <%= link_to 'Currently Active', '#', class: 'btn btn-secondary' %>
+              <% else %>
+                <%= link_to 'Start', dashboard_create_sub_url(plan_id: plan.id), class: 'btn btn-primary' %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -38,12 +42,15 @@
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <h4><%= subscription.plan.label %></h4>
           <ul>
-            <li>Started on: <%= subscription.start_date %></li>
-            <% unless subscription.plan.handle == 'free'%>
-              <li>End date: <%= subscription.end_date %></li>
-              <li><%= subscription.plan.duration %><%= subscription.plan.duration_unit %></li>
+            <li>Started on: <%= subscription.start_date.in_time_zone(user_tz).to_formatted_s(:long_ordinal) %></li>
+            <% if subscription.plan.handle == 'free'%>
+              <li>Free forever</li>
+            <% else %>
+              <li>End date: <%= subscription.end_date.in_time_zone(user_tz).to_formatted_s(:long_ordinal) %></li>
+              <li>Duration: <%= subscription.plan.duration %> <%= format_duration(subscription.plan.duration_unit, subscription.plan.duration) %></li>
+              <li>Price: GBP <%= subscription.plan.price %> / month</li>
             <% end %>
-            <li><%= subscription.plan.price %></li>
+
             <li>Status: <%= subscription.subscription_status.label %></li>
           </ul>
         </li>

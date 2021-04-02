@@ -8,6 +8,10 @@ class SubscriptionService
     new.expire_paid_subs
   end
 
+  def self.active_sub(user_id)
+    new(nil, user_id).active_sub
+  end
+
   private
   attr_reader :user_id
   attr_reader :plan_id
@@ -61,6 +65,12 @@ class SubscriptionService
   end
 
   public
+
+  def active_sub
+    user.subscriptions
+        .where(subscription_status: SubscriptionStatus.active)
+        .last
+  end
 
   def expire_paid_subs
     all_active_paid_subs.each do |sub|

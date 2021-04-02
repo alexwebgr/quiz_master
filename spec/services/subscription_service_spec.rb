@@ -11,13 +11,21 @@ RSpec.describe SubscriptionService, type: :service do
     let!(:plan_gy) { create(:plan, label: 'Gold yearly') }
 
 
-    context 'when the user is new and does not have any subscriptions' do
+    context 'when the user does not have any subscriptions and chooses a free one' do
       it "creates a new Subscription with the free plan and active status" do
-        described_class.create_sub(plan_free.id, user.id)
+        new_sub = described_class.create_sub(plan_free.id, user.id)
 
-        # expect(Subscription.count).to eq 1
-        expect(Subscription.last.plan.handle).to eq 'free'
-        expect(Subscription.last.subscription_status.handle).to eq 'active'
+        expect(new_sub.plan.handle).to eq 'free'
+        expect(new_sub.subscription_status.handle).to eq 'active'
+      end
+    end
+
+    context 'when the user does not have any subscriptions and chooses the gold monthly one' do
+      it "creates a new Subscription with the gold monthly plan and active status" do
+        new_sub = described_class.create_sub(plan_gm.id, user.id)
+
+        expect(new_sub.plan.handle).to eq 'goldmonthly'
+        expect(new_sub.subscription_status.handle).to eq 'active'
       end
     end
 
@@ -25,11 +33,10 @@ RSpec.describe SubscriptionService, type: :service do
       let!(:free_sub) { create(:subscription, plan: plan_free, subscription_status: sub_status_active, user: user) }
 
       it "creates a new Subscription the gold monthly plan and upcoming status" do
-        described_class.create_sub(plan_gm.id, user.id)
+        new_sub = described_class.create_sub(plan_gm.id, user.id)
 
-        # expect(Subscription.count).to eq 1
-        expect(Subscription.last.plan.handle).to eq 'goldmonthly'
-        expect(Subscription.last.subscription_status.handle).to eq 'active'
+        expect(new_sub.plan.handle).to eq 'goldmonthly'
+        expect(new_sub.subscription_status.handle).to eq 'active'
         # TODO: expire subs
         # expect(free_sub.subscription_status.handle).to eq 'expired'
       end
@@ -40,11 +47,10 @@ RSpec.describe SubscriptionService, type: :service do
       let!(:gm_sub) { create(:subscription, plan: plan_gm, subscription_status: sub_status_active, user: user) }
 
       it "creates a new Subscription with the gold yearly plan and upcoming status" do
-        described_class.create_sub(plan_gy.id, user.id)
+        new_sub = described_class.create_sub(plan_gy.id, user.id)
 
-        # expect { described_class.create_sub(plan.id, user.id) }.to change(Subscription, :count).by 1
-        expect(Subscription.last.plan.handle).to eq 'goldyearly'
-        expect(Subscription.last.subscription_status.handle).to eq 'upcoming'
+        expect(new_sub.plan.handle).to eq 'goldyearly'
+        expect(new_sub.subscription_status.handle).to eq 'upcoming'
         expect(gm_sub.subscription_status.handle).to eq 'active'
       end
     end
@@ -55,11 +61,10 @@ RSpec.describe SubscriptionService, type: :service do
       let!(:gy_sub) { create(:subscription, plan: plan_gy, subscription_status: sub_status_active, user: user) }
 
       it "creates a new Subscription with the gold monthly plan and upcoming status" do
-        described_class.create_sub(plan_gm.id, user.id)
+        new_sub = described_class.create_sub(plan_gm.id, user.id)
 
-        # expect { described_class.create_sub(plan.id, user.id) }.to change(Subscription, :count).by 1
-        expect(Subscription.last.plan.handle).to eq 'goldmonthly'
-        expect(Subscription.last.subscription_status.handle).to eq 'upcoming'
+        expect(new_sub.plan.handle).to eq 'goldmonthly'
+        expect(new_sub.subscription_status.handle).to eq 'upcoming'
         expect(gy_sub.subscription_status.handle).to eq 'active'
       end
     end
@@ -71,11 +76,10 @@ RSpec.describe SubscriptionService, type: :service do
       let!(:gm_sub) { create(:subscription, plan: plan_gm, subscription_status: sub_status_active, user: user) }
 
       it "creates a new Subscription with the free plan and upcoming status" do
-        described_class.create_sub(plan_free.id, user.id)
+        new_sub = described_class.create_sub(plan_free.id, user.id)
 
-        # expect { described_class.create_sub(plan.id, user.id) }.to change(Subscription, :count).by 1
-        expect(Subscription.last.plan.handle).to eq 'free'
-        expect(Subscription.last.subscription_status.handle).to eq 'upcoming'
+        expect(new_sub.plan.handle).to eq 'free'
+        expect(new_sub.subscription_status.handle).to eq 'upcoming'
         expect(gm_sub.subscription_status.handle).to eq 'active'
       end
     end
