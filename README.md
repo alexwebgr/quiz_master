@@ -1,24 +1,38 @@
-# README
+# Quiz master
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Purpose
+Use this quiz to sharpen your knowledge on any field of interest.
 
-Things you may want to cover:
+## Usage
+There are two main parts. One is the quiz taking and the other one is subscription management
 
-* Ruby version
+In order to take the quiz
+* Select a user from the home page to login
+* Complete the quiz by answering all the questions
+* See the results in the next page
 
-* System dependencies
+Once you have logged in you can upgrade the subscription to access documentation on how to prepare for the 
+quiz
 
-* Configuration
+## Installation locally 
+You can install it locally by running the following commands in the terminal
 
-* Database creation
+make sure you have ruby 3.0.0, postgres and yarn installed
 
-* Database initialization
+* `bundle install` to install the dependencies
+* `rails db:setup` to create the databases
+* `rails db:schema:load` to load the db schema and run the seeds will populate the tables with some dummy data
+* `rails s` to start the server and head straight to http://localhost:3000 to view the app
 
-* How to run the test suite
+The schema also exists on the /schema.xml and can be viewed by navigating to the url at the top of the file
+You can repopulate the db with dummy data by using the rake tasks found /lib/tasks like so, 
+` bundle exec rake alexweb:create_quiz` and you can also view all the tasks with `bundle exec rake -T` assuming they have a 
+description.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Things missing 
+* Proper user authentication, there is no login form
+* Proper authorization, anyone can create quizzes and questions
+* The cron job that would check and expire the subscriptions that have reached their end date
 
-* Deployment instructions
 
-* ...
+
